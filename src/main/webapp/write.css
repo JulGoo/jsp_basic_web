@@ -1,0 +1,17 @@
+table {
+	text-align: center;
+	border: 1px solid #dddddd;
+	color: black;
+}
+
+table th {
+	vertical-align: middle;
+}
+
+textarea {
+	height:350px;
+}
+
+#save {
+	float: right;
+}

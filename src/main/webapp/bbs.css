@@ -1,0 +1,15 @@
+table {
+	text-align: center;
+	border: 1px solid #dddddd;
+}
+
+table thead tr th {
+	background-color: #eeeeee;
+	text-align: center;
+}
+
+#write {
+	float: right;
+}
+
+h3 {text-align: left;}

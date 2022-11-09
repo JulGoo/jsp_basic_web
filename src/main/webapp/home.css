@@ -1,0 +1,132 @@
+html, body {cursor: url(media/rice.png), url(media/rice.jpg), auto
+}
+
+body {
+	background-color: rgb(253, 254, 255);
+}
+
+#wrapper {
+	width: 1000px;
+	margin: auto;
+}
+
+header {
+	width: 100%;
+	height: 190px;
+	background-image: url(media/header.png);
+	background-repeat: no-repeat;
+	background-color: #F3FAFE;
+	margin-top: auto;
+}
+
+header nav.login {
+	float: right;
+	width: 70%;
+	margin-top: 1px;
+}
+
+nav.login ul {
+	list-style-type: none;
+	margin-top: 0px;
+	float: right;
+}
+
+nav.login ul li {
+	display: inline;
+	float: left;
+	font-weight: bold;
+	margin: 10px;
+	margin-top: 0px;
+	font-size: small;
+}
+
+nav.login ul li a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+}
+
+header nav.home {
+	float: left;
+	width: auto;
+	margin-top: 110px;
+}
+
+nav.home ul {
+	list-style-type: none;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+nav.home ul li {
+	display: inline;
+	float: left;
+	font-weight: bold;
+	margin: 15px;
+	margin-top: 0px;
+	font-size: medium;
+}
+
+nav.home ul li a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+}
+
+section {
+	width: 80%;
+	float: left;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+h2 {
+	text-align: left;
+}
+
+section div {
+	width: 650px;
+	height: 500px;
+}
+
+aside {
+	width: 20%;
+	float: right;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+nav.aside ul {
+	list-style-type: none;
+	display: block;
+	padding: 0px;
+	margin-right: 50px;
+}
+
+nav.aside ul li {
+	margin: 35px;
+	display: block;
+}
+
+aside h3 {
+	text-align: center;
+}
+
+footer {
+	clear: both;
+	margin-bottom: 1px;
+	text-align: center;
+}
+
+footer ul {
+	list-style-type: none;
+	float: center;
+}
+
+footer ul li {
+	display: inline;
+	margin: 20px;
+}
+
+footer ul li a:link {
+	color: black;
+	text-decoration-line: none;
+}
