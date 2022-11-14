@@ -9,6 +9,7 @@ public class Bbs_hDTO {
 	private String date;
 	private String content;
 	private int available;	//게시글 활성 여부(삭제 여부)
+	private int likecount;
 	
 	public int getNo() {
 		return no;
@@ -52,5 +53,10 @@ public class Bbs_hDTO {
 	public void setAvailable(int available) {
 		this.available = available;
 	}
-	
+	public int getLikecount() {
+		return likecount;
+	}
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
 }

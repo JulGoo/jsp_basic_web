@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<%
+<%
 	//현재 세션 확인
 	String userID = null;
 	if(session.getAttribute("userID") != null){

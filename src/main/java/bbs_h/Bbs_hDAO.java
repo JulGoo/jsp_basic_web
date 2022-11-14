@@ -42,7 +42,7 @@ public class Bbs_hDAO {
 		}
 	
 	public int write(String rest, String title, String userID, String content) {
-		String SQL = "insert into bbs_h values(?,?,?,?,?,?,?)";
+		String SQL = "insert into bbs_h values(?,?,?,?,?,?,?,0)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
@@ -78,6 +78,7 @@ public class Bbs_hDAO {
 				bbs.setDate(rs.getString(5));
 				bbs.setContent(rs.getString(6));
 				bbs.setAvailable(rs.getInt(7));
+				bbs.setLikecount(rs.getInt(8));
 				list.add(bbs);
 			}
 		}catch (Exception e) {
@@ -116,7 +117,11 @@ public class Bbs_hDAO {
 				bbs.setTitle(rs.getString(3));
 				bbs.setUserID(rs.getString(4));
 				bbs.setDate(rs.getString(5));
-				bbs.setContent(rs.getString(6));
+				if (rs.getString(6) == null) {
+					bbs.setContent("");
+				} else {
+					bbs.setContent(rs.getString(6));
+				}
 				bbs.setAvailable(rs.getInt(7));
 				return bbs;
 			}
@@ -155,27 +160,48 @@ public class Bbs_hDAO {
 		return -1;	//데이터베이스 오류
 	}
 	
+	//좋아요
+	public int like(String no) {
+		PreparedStatement pstmt = null;
+		try {
+			String SQL = "update bbs_h set likecount = likecount + 1 where no = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(no));
+			return pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//사용자 아이디 가져오기
+	public String getUserID(String no) {
+		PreparedStatement pstmt = null;
+		try {
+			String SQL = "select userID from bbs_h where no = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, Integer.parseInt(no));
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				return rs.getString(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 }

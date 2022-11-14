@@ -117,7 +117,9 @@
 						</tr>
 					</table>
 				</form>
-
+				
+				<a href="likeAction.jsp?no=<%=bbs.getNo() %>" class="btn btn-light">추천하기</a>
+				
 				<a href="bbs_h.jsp" class="btn btn-dark">목록</a>
 
 				<!-- 해당 글의 작성자만 수정, 삭제 가능-->

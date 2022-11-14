@@ -93,6 +93,7 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
+							<th>추천수</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -101,16 +102,14 @@
 						ArrayList<Bbs_hDTO> list = bbs.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 						%>
-						<tr>
+						<tr onclick="location.href='view.jsp?no=<%= list.get(i).getNo() %>'">
 							<td><%=list.get(i).getNo() %></td>
 							<td><%= list.get(i).getRest() %></td>
-							<!-- 제목 클릭 시 내용을 볼 수 있게 링크 연결 -->
-							<td>
-							<a href = "view.jsp?no=<%= list.get(i).getNo() %>"> <%= list.get(i).getTitle() %> </a>
-							</td>
+							<td><%= list.get(i).getTitle() %></td>
 							<td><%=list.get(i).getUserID()%></td>
 							<td><%=list.get(i).getDate().substring(0, 11) + list.get(i).getDate().substring(11, 13) + "시"
 									+ list.get(i).getDate().substring(14, 16) + "분"%></td>
+							<td><%=list.get(i).getLikecount() %></td>
 						</tr>
 						<%
 						}
