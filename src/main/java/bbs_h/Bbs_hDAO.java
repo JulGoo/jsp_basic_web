@@ -26,6 +26,39 @@ public class Bbs_hDAO {
 			return -1; //데이터베이스 오류
 		}
 		
+		public int getNextCategory(int pageNumber, String Category) {
+			String SQL = "SELECT no FROM bbs_h WHERE category = ? AND available = 1 ORDER BY no DESC";
+			ResultSet rs = null;
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, Category);
+				rs = pstmt.executeQuery();
+				int first=0, wherenum=0, i=0;
+				int fin = listofcategoryCount(Category) - (pageNumber - 1) * 10;
+				if(pageNumber == 1 ) { 
+					first = 1;
+				}
+				else {
+					wherenum = listofcategoryCount(Category) - fin;
+				}
+
+				
+				while(rs.next()) {
+					if (first == 1) {
+						return rs.getInt(1) + 1;
+					}
+					if (i == wherenum) {
+						return rs.getInt(1) + 1;
+					}
+					i++;
+				}
+				return -1;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1;
+		}
+		
 		//getDate() == 작성 일자를 구하는 메소드
 		public String getDate() {
 			String SQL = "select now()";
@@ -96,7 +129,7 @@ public class Bbs_hDAO {
 		ArrayList<Bbs_hDTO> list = new ArrayList<Bbs_hDTO>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1,  getNextCategory(pageNumber, category));
 			pstmt.setString(2, category);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -118,7 +151,8 @@ public class Bbs_hDAO {
 		return list;
 	}
 	
-	//페이징 처리 메소드: 불타입으로 페이지가 존재하는지 조회하는 메소드로 게시글이 10개에서 11개로 넘어갈때 '다음'버튼으로 페이징 처리 
+	
+	
 	public boolean nextPage(int pageNumber, String category) {
 		String SQL = "select * from bbs_h where available = 1 and category = ? limit ?";
 		try {
@@ -137,7 +171,7 @@ public class Bbs_hDAO {
 	
 	//카테고리 별 리스트의 개수
 	public int listofcategoryCount(String category) {
-		String SQL = "select count(category) from bbs_h where category = ?";
+		String SQL = "select count(*) from bbs_h where category = ? and available = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, category);

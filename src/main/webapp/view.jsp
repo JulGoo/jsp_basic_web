@@ -3,6 +3,9 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs_h.Bbs_hDAO"%>
 <%@ page import="bbs_h.Bbs_hDTO"%>
+<%@ page import="comment.CommentDAO"%>
+<%@ page import="comment.CommentDTO"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 
@@ -34,11 +37,11 @@
 <body>
 	<%
 	String userID = (String) session.getAttribute("userID");
-	String userName = (String) session.getAttribute("userName");	
-	
+	String userName = (String) session.getAttribute("userName");
+
 	int no = 0;
 	no = Integer.parseInt(request.getParameter("no"));
-	
+
 	if (no == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -47,7 +50,7 @@
 		script.println("</script>");
 		script.close();
 	}
-	
+
 	Bbs_hDTO bbs = new Bbs_hDAO().getBbs_h(no);
 	%>
 
@@ -96,44 +99,122 @@
 					<table class="table table-bordered">
 						<tr>
 							<th>음식점</th>
-							<td><%= bbs.getRest() %></td>
+							<td><%=bbs.getRest()%></td>
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><%= bbs.getTitle() %></td>
+							<td><%=bbs.getTitle()%></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><%= bbs.getUserID() %></td>
+							<td><%=bbs.getUserID()%></td>
 						</tr>
 						<tr>
 							<th>작성일자</th>
-							<td><%= bbs.getDate().substring(0, 11) + bbs.getDate().substring(11, 13) + "시"
-									+ bbs.getDate().substring(14, 16) + "분" %></td>
+							<td><%=bbs.getDate().substring(0, 11) + bbs.getDate().substring(11, 13) + "시" + bbs.getDate().substring(14, 16) + "분"%></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><%= bbs.getContent() %></td>
+							<td><%=bbs.getContent()%></td>
 						</tr>
 					</table>
 				</form>
-				
-				<a href="likeAction.jsp?no=<%=bbs.getNo() %>" class="btn btn-light">추천하기</a>
-				
+
+				<a href="likeAction.jsp?no=<%=bbs.getNo()%>" class="btn btn-light">추천하기</a>
+
 				<a href="javascript:history.back();" class="btn btn-dark">목록</a>
 
 				<!-- 해당 글의 작성자만 수정, 삭제 가능-->
 				<%
 				if (userID != null && userID.equals(bbs.getUserID())) {
 				%>
-				<a href="update.jsp?no=<%=no%>" class="btn btn-light">수정</a> 
-				<a href="deleteAction.jsp?no=<%=no%>" class="btn btn-light" 
-				onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+				<a href="update.jsp?no=<%=no%>" class="btn btn-light">수정</a> <a
+					href="deleteAction.jsp?no=<%=no%>" class="btn btn-light"
+					onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
 				<%
 				}
 				%>
 			</div>
 		</div>
+		<br>
+		<hr>
+
+		<%--댓글쓰기--%>
+		<div class="container">
+			<div class="form-group">
+				<form method="post" encType="multipart/form-data"
+					action="commentAction.jsp?no=<%=no%>">
+					<table class="table table-striped">
+						<tr>
+							<td><%=userID%></td>
+							<td><input type="text" class="form-control"
+								placeholder="댓글을 남겨주세요." name="commentText"></td>
+							<td><input type="submit" class="btn-primary pull"
+								value="댓글 작성"></td>
+					</table>
+				</form>
+			</div>
+		</div>
+		<br>
+
+		<%--댓글보기--%>
+		<div class="container">
+			<div class="form-group">
+				<form method="post" encType="multipart/form-data" action="commentAction.jsp?no=<%=no%>">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>댓글</td>
+							</tr>
+							<tr>
+							<td>
+								<%
+									CommentDAO commentDAO = new CommentDAO();
+									ArrayList<CommentDTO> list = commentDAO.getCommentList(no);
+									for(int i=0; i<list.size(); i++){
+								%>
+								
+								<%--댓글 하나하나 당 div --%>
+								<div class="container">
+									<div class="row">
+										<table>
+											<tbody>
+												<tr>
+												<td>
+												<%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %>
+												</td>		
+											    <td colspan="2"></td>
+											    <td>
+											    <%
+												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
+												%>
+											    <a onclick="return confirm('정말 삭제하시겠습니까?')" href="commentDeleteAction.jsp?commentID=<%=list.get(i).getCommentID() %>"
+											    class="btn-primary">삭제</a>
+												<%
+												}
+												%>
+												</td>
+												</tr>
+												<tr>
+												<td colspan="5"><%=list.get(i).getCommentText() %>
+												</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							<%
+									}
+							%>
+							</td>
+							</tr>
+							</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+
 
 		<footer>
 			<hr>

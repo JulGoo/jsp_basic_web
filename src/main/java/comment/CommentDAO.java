@@ -12,7 +12,7 @@ public class CommentDAO {
 
 	// 새 댓글 번호 메소드
 	public int getNext() {
-		String SQL = "select commentID from comment order by no desc";
+		String SQL = "select commentID from comment order by commentID desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			ResultSet rs = pstmt.executeQuery();
@@ -42,12 +42,11 @@ public class CommentDAO {
 	}
 	
 	//댓글 작성 메소드
-	public int write(int bbsID, String userID, String commentText) {
-		String SQL = "insert into bbs_h values(?,?,?,?,?,?,?)";
+	public int write(int no, String userID, String commentText) {
+		String SQL = "insert into bbs_h values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			
-			pstmt.setInt(1, bbsID);
+			pstmt.setInt(1, no);
 			pstmt.setInt(2, getNext());
 			pstmt.setString(3, userID);
 			pstmt.setString(4, getDate());
@@ -60,4 +59,38 @@ public class CommentDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
+	
+	//댓글 보기 메소드
+	public ArrayList<CommentDTO> getCommentList(int no) {
+		String SQL = "select * from comment where no = ? and commentAvailable = 1 order by no desc";
+		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, no);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CommentDTO cmmt = new CommentDTO();
+				cmmt.setNo(rs.getInt(1));
+				cmmt.setCommentID(rs.getInt(2));
+				cmmt.setUserID(rs.getString(3));
+				cmmt.setCommentDate(rs.getString(4));
+				cmmt.setCommentText(rs.getString(5));
+				cmmt.setCommentAvailable(rs.getInt(6));
+				list.add(cmmt);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+

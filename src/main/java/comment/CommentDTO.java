@@ -1,18 +1,18 @@
 package comment;
 
 public class CommentDTO {
-	private int bbsID;
+	private int no;
 	private int commentID;
 	private String userID;
 	private String commentDate;
 	private String commentText;
 	private int commentAvailable;
 	
-	public int getBbsID() {
-		return bbsID;
+	public int getNo() {
+		return no;
 	}
-	public void setBbsID(int bbsID) {
-		this.bbsID = bbsID;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public int getCommentID() {
 		return commentID;
