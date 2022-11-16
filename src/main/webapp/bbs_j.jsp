@@ -82,7 +82,7 @@
 		<br> <br>
 		
 		<!-- 테이블 생성 -->
-		<h3>한식 추천 목록</h3>
+		<h3>일식 추천 목록</h3>
 		<div class="container">
 			<div class="row">
 				<table class="table table-striped table-hover">
@@ -99,7 +99,7 @@
 					<tbody>
 						<%
 						Bbs_hDAO bbs = new Bbs_hDAO();
-						ArrayList<Bbs_hDTO> list = bbs.getCategoryList(pageNumber, "kor");
+						ArrayList<Bbs_hDTO> list = bbs.getCategoryList(pageNumber, "jpn");
 						for (int i = 0; i < list.size(); i++) {
 						%>
 						<tr onclick="location.href='view.jsp?no=<%= list.get(i).getNo() %>'">
@@ -121,11 +121,11 @@
 				<%
 				if(pageNumber != 1) {
 				%>
-				<a href="bbs_h.jsp?pageNumber=<%= pageNumber - 1 %>" class="btn btn-light">이전</a>
+				<a href="bbs_j.jsp?pageNumber=<%= pageNumber - 1 %>" class="btn btn-light">이전</a>
 				<%
-				} if(bbs.nextPage(pageNumber + 1, "kor")) {
+				} if(bbs.nextPage(pageNumber + 1, "jpn")) {
 				%>
-				<a href="bbs_h.jsp?pageNumber=<%= pageNumber + 1 %>" class="btn btn-light">다음</a>
+				<a href="bbs_j.jsp?pageNumber=<%= pageNumber + 1 %>" class="btn btn-light">다음</a>
 				<%
 				}
 				%> 				

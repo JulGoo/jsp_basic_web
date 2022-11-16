@@ -20,6 +20,10 @@
 	if(session.getAttribute("userID") != null){
 		userID = (String)session.getAttribute("userID");
 	}
+	
+	String category = null;
+	category = request.getParameter("category");
+	
 	//로그인한 회원만 글쓰기 가능
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
@@ -37,10 +41,17 @@
 			script.println("history.back()");
 			script.println("</script>");
 			script.close();
+		}else if(category == ""){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('카테고리 선택은 필수입니다!')");
+			script.println("history.back()");
+			script.println("</script>");
+			script.close();
 		}else {
 		//글쓰기 로직 수행
 		Bbs_hDAO Bbs_hDAO = new Bbs_hDAO();
-		int result = Bbs_hDAO.write(bbs_h.getRest(), bbs_h.getTitle(), userID, bbs_h.getContent());
+		int result = Bbs_hDAO.write(bbs_h.getRest(), bbs_h.getTitle(), userID, bbs_h.getContent(), category);
 		//데이터베이스 오류인 경우
 			if(result == -1){
 				PrintWriter script = response.getWriter();
@@ -54,7 +65,19 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('게시물을 업로드했습니다:)')");
-				script.println("location.href='bbs_h.jsp'");
+				if(category.equals("kor")){
+					script.println("location.href='bbs_h.jsp'");
+				}else if(category.equals("ita")){
+					script.println("location.href='bbs_i.jsp'");
+				}else if(category.equals("chn")){
+					script.println("location.href='bbs_c.jsp'");
+				}else if(category.equals("jpn")){
+					script.println("location.href='bbs_j.jsp'");
+				}else if(category.equals("cafe")){
+					script.println("location.href='bbs_cafe.jsp'");
+				}else {
+					script.println("location.href='bbs_etc.jsp'");
+				}
 				script.println("</script>");
 				script.close();
 			}	

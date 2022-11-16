@@ -78,12 +78,12 @@
 			<nav class="home">
 				<ul>
 					<li><a href="home.jsp">Home</a></li>
-					<li><a href="bbs_h.jsp" class="active">한식</a></li>
-					<li><a href="#">양식</a></li>
-					<li><a href="#">중식</a></li>
-					<li><a href="#">일식</a></li>
-					<li><a href="#">카페</a></li>
-					<li><a href="#">기타</a></li>
+					<li><a href="bbs_h.jsp">한식</a></li>
+					<li><a href="bbs_i.jsp">양식</a></li>
+					<li><a href="bbs_c.jsp">중식</a></li>
+					<li><a href="bbs_j.jsp">일식</a></li>
+					<li><a href="bbs_cafe.jsp">카페</a></li>
+					<li><a href="bbs_etc.jsp">기타</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -93,6 +93,20 @@
 			<div class="row">
 				<form method="post" action="updateAction.jsp?no=<%=no%>">
 					<table class="table table-bordered">
+						<tr>
+							<th>카테고리</th>
+							<td>
+								<select name="category">
+									<option value="">===선택===</option>
+									<option value="kor">한식</option>
+									<option value="ita">양식</option>
+									<option value="chn">중식</option>
+									<option value="jpn">일식</option>
+									<option value="cafe">카페</option>
+									<option value="etc">기타</option>
+								</select>
+							</td>
+						</tr>
 						<tr>
 							<th>음식점</th>
 							<td><input type="text" class="form-control"

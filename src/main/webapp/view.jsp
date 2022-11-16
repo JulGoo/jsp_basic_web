@@ -79,12 +79,12 @@
 			<nav class="home">
 				<ul>
 					<li><a href="home.jsp">Home</a></li>
-					<li><a href="bbs_h.jsp" class="active">한식</a></li>
-					<li><a href="#">양식</a></li>
-					<li><a href="#">중식</a></li>
-					<li><a href="#">일식</a></li>
-					<li><a href="#">카페</a></li>
-					<li><a href="#">기타</a></li>
+					<li><a href="bbs_h.jsp">한식</a></li>
+					<li><a href="bbs_i.jsp">양식</a></li>
+					<li><a href="bbs_c.jsp">중식</a></li>
+					<li><a href="bbs_j.jsp">일식</a></li>
+					<li><a href="bbs_cafe.jsp">카페</a></li>
+					<li><a href="bbs_etc.jsp">기타</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -120,7 +120,7 @@
 				
 				<a href="likeAction.jsp?no=<%=bbs.getNo() %>" class="btn btn-light">추천하기</a>
 				
-				<a href="bbs_h.jsp" class="btn btn-dark">목록</a>
+				<a href="javascript:history.back();" class="btn btn-dark">목록</a>
 
 				<!-- 해당 글의 작성자만 수정, 삭제 가능-->
 				<%

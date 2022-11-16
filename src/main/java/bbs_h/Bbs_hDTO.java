@@ -10,6 +10,7 @@ public class Bbs_hDTO {
 	private String content;
 	private int available;	//게시글 활성 여부(삭제 여부)
 	private int likecount;
+	private String category;
 	
 	public int getNo() {
 		return no;
@@ -58,5 +59,11 @@ public class Bbs_hDTO {
 	}
 	public void setLikecount(int likecount) {
 		this.likecount = likecount;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }
