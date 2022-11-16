@@ -100,7 +100,15 @@
 						<%
 						Bbs_hDAO bbs = new Bbs_hDAO();
 						ArrayList<Bbs_hDTO> list = bbs.getCategoryList(pageNumber, "chn");
+						
+						int numbering = 0;
 						for (int i = 0; i < list.size(); i++) {
+							int count = bbs.listofcategoryCount("chn");
+							if(pageNumber != 1){
+								numbering = count - i - (pageNumber - 1) * 10;
+							}else{
+								numbering = count - i;
+							}
 						%>
 						<tr onclick="location.href='view.jsp?no=<%= list.get(i).getNo() %>'">
 							<td><%=i+1 %></td>
