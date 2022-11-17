@@ -55,7 +55,9 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('좋아요:)');");
-			script.println("history.back()");
+			script.print("location.href='view.jsp?no=");
+			script.print(no);
+			script.println("';");
 			script.println("</script>");
 			script.close();
 		}else {

@@ -66,7 +66,7 @@
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('게시물을 삭제했습니다:)')");
-				script.println("location.href='home.jsp'");
+				script.println("history.back()");
 				script.println("</script>");
 				script.close();
 			}	

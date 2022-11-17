@@ -142,7 +142,7 @@
 		<%--댓글쓰기--%>
 		<div class="container">
 			<div class="form-group">
-				<form method="post" encType="multipart/form-data"
+				<form method="post"
 					action="commentAction.jsp?no=<%=no%>">
 					<table class="table table-striped">
 						<tr>
@@ -189,7 +189,7 @@
 											    <%
 												if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
 												%>
-											    <a onclick="return confirm('정말 삭제하시겠습니까?')" href="commentDeleteAction.jsp?commentID=<%=list.get(i).getCommentID() %>"
+											    <a onclick="return confirm('정말 삭제하시겠습니까?')" href="commentDeleteAction.jsp?commentID=<%=list.get(i).getCommentID() %>&&no=<%=no %>"
 											    class="btn-primary">삭제</a>
 												<%
 												}

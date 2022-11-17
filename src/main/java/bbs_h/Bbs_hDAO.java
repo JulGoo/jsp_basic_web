@@ -237,6 +237,7 @@ public class Bbs_hDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, no);
+			updateDeleteComment(no);
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -263,5 +264,17 @@ public class Bbs_hDAO {
 			}
 		}
 		return -1;
+	}
+	
+	public int updateDeleteComment(int no) {
+		String SQL = "update comment set commentAvailable = 0 where no = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;	//데이터베이스 오류
 	}
 }

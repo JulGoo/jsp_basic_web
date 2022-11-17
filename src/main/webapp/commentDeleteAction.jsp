@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs_h.Bbs_hDAO"%>
-<%@ page import="bbs_h.Bbs_hDTO"%>
+<%@ page import="comment.CommentDAO"%>
+<%@ page import="comment.CommentDTO"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,31 +28,37 @@
 		script.close();
 	}
 	
+	
 	int no = 0;
 	no = Integer.parseInt(request.getParameter("no"));
+	
+	int commentID = 0;
+	commentID = Integer.parseInt(request.getParameter("commentID"));
 	
 	if (no == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 게시글입니다.')");
-		script.println("location.href='bbs_h.jsp'");
+		script.println("history.back()");
 		script.println("</script>");
 		script.close();
 	}
 	
 	//작성자 본인인지 체크
-	Bbs_hDTO bbs = new Bbs_hDAO().getBbs_h(no);
-	if(!userID.equals(bbs.getUserID())) {
+	CommentDTO comment = new CommentDAO().getCommentID(commentID);
+	CommentDAO test = new CommentDAO();
+	String dbvalue = test.whatuserID(commentID);
+	if(!userID.equals(dbvalue)) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href='bbs_h.jsp'");
+		script.println("history.back()");
 		script.println("</script>");
 		script.close();
 	}else {
 		//게시글 삭제 로직 수행
-		Bbs_hDAO Bbs_hDAO = new Bbs_hDAO();
-		int result = Bbs_hDAO.delete(no);
+		CommentDAO cmmt = new CommentDAO();
+		int result = cmmt.delete(commentID);
 		//데이터베이스 오류인 경우
 			if(result == -1){
 				PrintWriter script = response.getWriter();
@@ -65,8 +71,10 @@
 			}else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('게시물을 삭제했습니다:)')");
-				script.println("location.href='bbs_h.jsp'");
+				script.println("alert('댓글을 삭제했습니다:)')");
+				script.print("location.href='view.jsp?no=");
+				script.print(no);
+				script.println("';");
 				script.println("</script>");
 				script.close();
 			}	
