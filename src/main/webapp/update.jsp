@@ -27,6 +27,9 @@
 	function load(URL) {
 		window.open(URL, "mywin", "left=300, top=300, width=450, height=800");
 	}
+	function loadl(URL) {
+		window.open(URL, "mywindow", "left=300, top=100, width=450, height=430");
+	}
 </script>
 </head>
 <body>

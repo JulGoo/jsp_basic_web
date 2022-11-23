@@ -1,18 +1,23 @@
-@charset "UTF-8";
+@font-face {
+    font-family: 'insungitCutelivelyjisu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/insungitCutelivelyjisu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
 	background-color: #F4E7E6;
 	}
 	
-h2 {
+h1 {
 	text-align: center;
+	font-family: 'insungitCutelivelyjisu';
 	}
 	
 form {
-	border: 1px solid #3A1F99; 
+	border: 3px solid #e3f3fd; 
 	width: 500px; 
 	background-color: #F3FAFE; 
-	border-radius: 8px;
 	}
 	
 #container {
@@ -29,3 +34,11 @@ form {
 	float: center; 
 	display: center;
 	}
+	
+button {
+	float: right;
+}
+
+.btn {
+	margin:20px;
+}

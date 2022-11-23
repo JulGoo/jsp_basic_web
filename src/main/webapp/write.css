@@ -45,7 +45,7 @@ textarea {
 }
 
 .moddel {
-	float: middle;
+	display: block;
 }
 
 #wc {
@@ -72,13 +72,13 @@ p {
 	float: right;
 }
 
-.con {
-	margin: 10 0 0 10;
+.inc {
+	border: 2px solid #e3f3fd;
+	background-color: #f3fafe;
+	padding: 10px;
 }
 
-.inc {
-	border: 2px solid black;
-	background-color: #f3fafe;
-	margin: 10 0 0 10;
+#mod {
+	margin-right: 10px;
 }
 

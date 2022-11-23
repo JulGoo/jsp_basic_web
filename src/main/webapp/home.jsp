@@ -21,6 +21,10 @@
 	function load(URL) {
 		window.open(URL, "mywin", "left=300, top=300, width=450, height=800");
 	}
+	
+	function loadl(URL) {
+		window.open(URL, "mywindow", "left=300, top=100, width=450, height=430");
+	}
 </script>
 </head>
 <body>
@@ -36,7 +40,7 @@
 			%>
 			<nav class="login">
 				<ul>
-					<li><a href="javascript:load('login.jsp')">로그인</a></li>
+					<li><a href="javascript:loadl('login.jsp')">로그인</a></li>
 					<li><a href="javascript:load('join.jsp')">회원가입</a></li>
 				</ul>
 			</nav>

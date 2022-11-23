@@ -31,6 +31,9 @@
 	function load(URL) {
 		window.open(URL, "mywin", "left=300, top=300, width=450, height=800");
 	}
+	function loadl(URL) {
+		window.open(URL, "mywindow", "left=300, top=100, width=450, height=430");
+	}
 </script>
 </head>
 
@@ -56,6 +59,13 @@
 	//조회수 올리기
 	Bbs_hDAO bbss = new Bbs_hDAO();
 	bbss.viewcountUpdate(no);
+
+	String ID;
+	if (userID == null) {
+		ID = "ID";
+	} else {
+		ID = userID;
+	}
 	%>
 
 	<div id="wrapper">
@@ -66,7 +76,7 @@
 			%>
 			<nav class="login">
 				<ul>
-					<li><a href="javascript:load('login.jsp')">로그인</a></li>
+					<li><a href="javascript:loadl('login.jsp')">로그인</a></li>
 					<li><a href="javascript:load('join.jsp')">회원가입</a></li>
 				</ul>
 			</nav>
@@ -100,7 +110,23 @@
 				</ul>
 			</nav>
 		</header>
-		<br> <br> <br>
+		<br>
+		
+			<div class="moddel">
+			<!-- 해당 글의 작성자만 수정, 삭제 가능-->
+			<%
+			if (userID != null && userID.equals(bbs.getUserID())) {
+			%>
+			
+			<a href="deleteAction.jsp?no=<%=no%>" class="btn btn-outline-dark"
+				id="del" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+				<a href="update.jsp?no=<%=no%>" class="btn btn-outline-dark" id="mod">수정</a>
+				<br><br>
+			<%
+			}
+			%>
+		</div>
+		
 		<div class="container" id="aaa">
 			<div class="row">
 				<form method="post" action="writeAction.jsp">
@@ -132,19 +158,6 @@
 		<a href="likeAction.jsp?no=<%=bbs.getNo()%>"
 			class="btn btn-outline-dark" id="like">추천하기</a>
 
-		<div class="moddel">
-			<!-- 해당 글의 작성자만 수정, 삭제 가능-->
-			<%
-			if (userID != null && userID.equals(bbs.getUserID())) {
-			%>
-			<a href="update.jsp?no=<%=no%>" class="btn btn-outline-dark" id="mod">수정</a>
-			<a href="deleteAction.jsp?no=<%=no%>" class="btn btn-outline-dark"
-				id="del" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
-			<%
-			}
-			%>
-		</div>
-
 		<%
 		String category = bbs.getCategory();
 		if (category.equals("kor")) {
@@ -175,10 +188,8 @@
 		}
 		%>
 
-		<br> 
-		<br>
-		<br>
-		
+		<br> <br> <br>
+
 		<p>&nbsp;댓글</p>
 		<%--댓글쓰기--%>
 		<div class="container" id="wc">
@@ -186,73 +197,65 @@
 				<form method="post" action="commentAction.jsp?no=<%=no%>">
 					<table>
 						<tr>
-							<td id="id" width=15%><%=userID%></td>
+							<td id="id" width=15%><%=ID%></td>
 							<td width=75%><input type="text" class="form-control"
 								placeholder="댓글을 남겨주세요." name="commentText"></td>
 							<td width=3%></td>
-							<td width=7%><input type="submit" class="btn-primary pull" value="등록"></td>
+							<td width=7%><input type="submit" class="btn-primary pull"
+								value="등록"></td>
 						</tr>
-					</table>
-				</form>
-			</div>
-			</div>
-			
-		
-		<br>
-
-		<%--댓글보기--%>
-		<div class="container">
-			<div class="form-group">
-				<form method="post" action="commentAction.jsp?no=<%=no%>">
-					<table>
-						<tbody>
-							<tr>
-								<td>
-									<%
-									CommentDAO commentDAO = new CommentDAO();
-									ArrayList<CommentDTO> list = commentDAO.getCommentList(no);
-									for (int i = 0; i < list.size(); i++) {
-									%> <%--댓글 하나하나 당 div --%>
-									<div class="con">
-										<div class="row">
-											<table class="inc">
-												<tbody>
-													<tr>
-														<td width=80%><%=list.get(i).getUserID()%></td>
-														<td><%=list.get(i).getCommentDate().substring(0, 11) + list.get(i).getCommentDate().substring(11, 13) + "시"
-		+ list.get(i).getCommentDate().substring(14, 16) + "분"%></td>
-													</tr>
-													<tr>
-														<td colspan=2><%=list.get(i).getCommentText()%></td>					
-													</tr>
-													<tr>
-														<td colspan=2>
-															<%
-															if (list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)) {
-															%> 
-															<a onclick="return confirm('정말 삭제하시겠습니까?')"
-															href="commentDeleteAction.jsp?commentID=<%=list.get(i).getCommentID()%>&&no=<%=no%>"
-															class="del">삭제</a> 
-															<%
- 															}
- 															%>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-<%
- }
- %>
-								</td>
-							</tr>
-						</tbody>
 					</table>
 				</form>
 			</div>
 		</div>
 
+
+		<br>
+
+		<%--댓글보기--%>
+		<div class="container">
+			<form method="post" action="commentAction.jsp?no=<%=no%>">
+				<%
+				CommentDAO commentDAO = new CommentDAO();
+				ArrayList<CommentDTO> list = commentDAO.getCommentList(no);
+				for (int i = 0; i < list.size(); i++) {
+				%>
+				<%--댓글 하나하나 당 div --%>
+				<div class="con">
+					<div class="row">
+						<table class="inc">
+							<tbody>
+								<tr>
+									<td width=5%></td>
+									<td width=75%><%=list.get(i).getUserID()%></td>
+									<td><%=list.get(i).getCommentDate().substring(0, 11) + list.get(i).getCommentDate().substring(11, 13) + "시"
+		+ list.get(i).getCommentDate().substring(14, 16) + "분"%></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td colspan=2><%=list.get(i).getCommentText()%></td>
+								</tr>
+								<tr>
+									<td colspan=3>
+										<%
+										if (list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)) {
+										%> <a onclick="return confirm('정말 삭제하시겠습니까?')"
+										href="commentDeleteAction.jsp?commentID=<%=list.get(i).getCommentID()%>&&no=<%=no%>"
+										class="del">삭제</a> <%
+ }
+ %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br>
+				<%
+				}
+				%>
+			</form>
+		</div>
 
 		<footer>
 			<hr>

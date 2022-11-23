@@ -10,11 +10,11 @@
 </head>
 <body>
 	<br>
-	<h2>로그인</h2>
+	<h1>로그인</h1>
 	<br>
 	<div id="container">
 		<form method="post" action="loginAction.jsp">
-			<br> <img alt="logo" src="media/banner.png" width="495px">
+			<br> <img alt="logo" src="media/logo.png" width="450px">
 			<div id="inner">
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="floatingInput" name="floatingInput"
@@ -25,7 +25,7 @@
 						placeholder="Password"> <label for="floatingPassword">Password</label>
 				</div>
 				<br>
-				<button type="submit" id="submit" class="btn btn-primary">Sign
+				<button type="submit" id="submit" class="btn btn-dark">Sign
 					in</button>
 			</div>
 		</form>

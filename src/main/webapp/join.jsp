@@ -10,12 +10,12 @@
 </head>
 <body>
 	<br>
-	<h2>회원가입</h2>
+	<h1>회원가입</h1>
 	<br>
 	<div id="container">
 		<form method="post" action="joinAction.jsp">
 			<br>
-			<img alt="logo" src="media/banner.png" width="495px">
+			<img alt="logo" src="media/logo.png" width="450px">
 			<div id="inner">
 				아이디<br>
 					<input type="text" class="form-control" name="userID" maxlength="20" placeholder="UserID"><br>
@@ -53,7 +53,7 @@
   					<label class="form-check-label" for="inlineRadio1">여성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
   					<input class="form-check-input" type="radio" name="userGender" id="inlineRadio2" value="남성">
 					<label class="form-check-label" for="inlineRadio2">남성</label><br><br>
-					<button type="submit" class="btn btn-outline-primary">Sign up</button>
+					<button type="submit" class="btn btn-dark">Sign up</button>
 			</div>
 		</form>
 	</div>
