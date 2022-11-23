@@ -71,11 +71,11 @@ public class Bbs_hDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			return ""; //데이터베이스 오류		
+			return "";	
 		}
 	
 	public int write(String rest, String title, String userID, String content, String category) {
-		String SQL = "insert into bbs_h values(?,?,?,?,?,?,?,0,?)";
+		String SQL = "insert into bbs_h values(?,?,?,?,?,?,?,0,?,0)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			
@@ -143,6 +143,7 @@ public class Bbs_hDAO {
 				bbs.setAvailable(rs.getInt(7));
 				bbs.setLikecount(rs.getInt(8));
 				bbs.setCategory(rs.getString(9));
+				bbs.setViewcount(rs.getInt(10));
 				list.add(bbs);
 			}
 		}catch (Exception e) {
@@ -205,7 +206,7 @@ public class Bbs_hDAO {
 					bbs.setContent(rs.getString(6));
 				}
 				bbs.setAvailable(rs.getInt(7));
-				bbs.setCategory(rs.getString(8));
+				bbs.setCategory(rs.getString(9));
 				return bbs;
 			}
 		}catch (Exception e) {
@@ -276,5 +277,18 @@ public class Bbs_hDAO {
 			e.printStackTrace();
 		}
 		return -1;	//데이터베이스 오류
+	}
+	
+	//조회수 업데이트
+	public int viewcountUpdate(int no) {
+		String SQL = "update bbs_h set viewcount = viewcount + 1 where no = ?";
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;//데이터베이스 오류
 	}
 }

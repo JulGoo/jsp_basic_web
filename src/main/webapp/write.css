@@ -1,11 +1,31 @@
+@font-face {
+    font-family: 'insungitCutelivelyjisu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/insungitCutelivelyjisu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 table {
 	text-align: center;
-	border: 1px solid #dddddd;
 	color: black;
+	width: 100%;
+}
+
+#bbs {
+	border: 6px solid #e3f3fd;
+}
+
+#aaa {
+	padding: 0px;
+	margin:0px;
 }
 
 table th {
 	vertical-align: middle;
+}
+
+table tr td {
+	text-align: left;
 }
 
 textarea {
@@ -15,3 +35,50 @@ textarea {
 #save {
 	float: right;
 }
+
+#like {
+	float: left;
+}
+
+#list, #del, #mod {
+	float: right;
+}
+
+.moddel {
+	float: middle;
+}
+
+#wc {
+	background-color: #f3fafe;
+	border: 2px solid #e3f3fd;
+	height: 80px;
+}
+
+#id {
+	text-align: center;
+}
+
+.group {
+	float: center;
+	margin: 20px 0 0 15px;
+}
+
+p {
+	font-family: 'insungitCutelivelyjisu';
+	font-size: 28px;
+}
+
+.del {
+	float: right;
+}
+
+.con {
+	margin: 10 0 0 10;
+}
+
+.inc {
+	border: 2px solid black;
+	background-color: #f3fafe;
+	margin: 10 0 0 10;
+}
+

@@ -53,6 +53,9 @@
 			<%
 			}
 			%>
+			<div class="banner">
+			<img alt="사진에러" src="media/logo.png" height="110px" onclick="javascript:location.href='home.jsp'" style="cursor: pointer;">
+			</div>
 			<nav class="home">
 				<ul>
 					<li><a href="home.jsp">Home</a></li>
@@ -67,18 +70,17 @@
 		</header>
 
 		<section>
-			<h2>오늘의 추천 메뉴!</h2>
-			<br>
+			<p>오늘의 추천 메뉴!</p>
 			<div onclick="showImage()">
-				<img id="introImg" src="flist/Food_recmd.png" width="650px"
-					height="500px">
+				<img id="introImg" src="flist/Food_recmd.png" width="700px"
+					height="550px" style="cursor: pointer;">
 			</div>
 
 		</section>
 
 		<aside>
 			<div>
-				<h3>&lt; 학식 바로가기 &gt;</h3>
+				<h1>- 학식 바로가기 -</h1>
 				<nav class="aside">
 					<ul>
 						<li><a href="https://www.inha.ac.kr/kr/1072/subview.do" target="_blank"><img

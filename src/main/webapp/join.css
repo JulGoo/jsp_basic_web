@@ -1,8 +1,31 @@
 @charset "UTF-8";
 
-body {background-color: #F4E7E6;}
-h2 {text-align: center;}
-form {border: 1px solid #3A1F99; width: 500px; background-color: #F3FAFE; border-radius: 8px;}
-#container {display: flex; justify-content: center;}
-#inner {margin: 20px;}
-#submit {position: center; float: center; display: center;}
+body {
+	background-color: #F4E7E6;
+	}
+	
+h2 {
+	text-align: center;
+	}
+	
+form {
+	border: 1px solid #3A1F99; 
+	width: 500px; 
+	background-color: #F3FAFE; 
+	border-radius: 8px;
+	}
+	
+#container {
+	display: flex; 
+	justify-content: center;
+	}
+	
+#inner {
+	margin: 20px;
+	}
+	
+#submit {
+	position: center; 
+	float: center; 
+	display: center;
+	}

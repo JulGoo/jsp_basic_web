@@ -67,6 +67,9 @@
 			<%
 			}
 			%>
+			<div class="banner">
+			<img alt="사진에러" src="media/logo.png" height="110px" onclick="javascript:location.href='home.jsp'" style="cursor: pointer;">
+			</div>
 			<nav class="home">
 				<ul>
 					<li><a href="home.jsp">Home</a></li>
@@ -82,10 +85,10 @@
 		<br> <br>
 		
 		<!-- 테이블 생성 -->
-		<h3>중식 추천 목록</h3>
+		<p>중식 추천 목록</p>
 		<div class="container">
 			<div class="row">
-				<table class="table table-striped table-hover">
+				<table class="table table-hover">
 					<thead class="table-dark">
 						<tr>
 							<th>번호</th>
@@ -94,6 +97,7 @@
 							<th>작성자</th>
 							<th>작성일</th>
 							<th>추천수</th>
+							<th>조회수</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -118,6 +122,7 @@
 							<td><%=list.get(i).getDate().substring(0, 11) + list.get(i).getDate().substring(11, 13) + "시"
 									+ list.get(i).getDate().substring(14, 16) + "분"%></td>
 							<td><%=list.get(i).getLikecount() %></td>
+							<td><%=list.get(i).getViewcount() %></td>
 						</tr>
 						<%
 						}
@@ -129,20 +134,19 @@
 				<%
 				if(pageNumber != 1) {
 				%>
-				<a href="bbs_c.jsp?pageNumber=<%= pageNumber - 1 %>" class="btn btn-light">이전</a>
+				<a href="bbs_c.jsp?pageNumber=<%= pageNumber - 1 %>" class="pagenum">&lt;</a>
 				<%
 				} if(bbs.nextPage(pageNumber + 1, "chn")) {
 				%>
-				<a href="bbs_c.jsp?pageNumber=<%= pageNumber + 1 %>" class="btn btn-light">다음</a>
+				<a href="bbs_c.jsp?pageNumber=<%= pageNumber + 1 %>" class="pagenum">&gt;</a>
 				<%
 				}
 				%> 				
 				<br>
-				
-				<!-- 글쓰기 버튼 생성 -->
+			</div>
+			<!-- 글쓰기 버튼 생성 -->
 				<input type="button" class="btn btn-dark" value="글쓰기"
 					id="write" onClick="location.href='write.jsp'">
-			</div>
 		</div>
 		<br> <br>
 

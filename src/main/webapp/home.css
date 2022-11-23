@@ -1,8 +1,29 @@
-html, body {cursor: url(media/rice.png), url(media/rice.jpg), auto
+@font-face {
+    font-family: 'insungitCutelivelyjisu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/insungitCutelivelyjisu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body {
-	background-color: rgb(253, 254, 255);
+@font-face {
+    font-family: 'HSSaemaul-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
 #wrapper {
@@ -12,9 +33,7 @@ body {
 
 header {
 	width: 100%;
-	height: 190px;
-	background-image: url(media/header.png);
-	background-repeat: no-repeat;
+	height: 200px;
 	background-color: #F3FAFE;
 	margin-top: auto;
 }
@@ -28,6 +47,7 @@ header nav.login {
 nav.login ul {
 	list-style-type: none;
 	margin-top: 0px;
+	margin-bottom: 0px;
 	float: right;
 }
 
@@ -37,18 +57,26 @@ nav.login ul li {
 	font-weight: bold;
 	margin: 10px;
 	margin-top: 0px;
-	font-size: small;
+	font-size: 16px;
+	font-family: 'OTWelcomeRA';
 }
 
 nav.login ul li a {
 	color: rgb(0, 0, 0);
 	text-decoration: none;
+	font-size: 16px;
+	font-family: 'OTWelcomeRA';
+}
+
+header div {
+	margin-left: 30px; 
+	margin-bottom: 10px;
 }
 
 header nav.home {
 	float: left;
 	width: auto;
-	margin-top: 110px;
+	margin-top: 10px;
 }
 
 nav.home ul {
@@ -69,28 +97,37 @@ nav.home ul li {
 nav.home ul li a {
 	color: rgb(0, 0, 0);
 	text-decoration: none;
+	font-size: 20px;
+	font-family: 'OTWelcomeRA';
 }
 
 section {
 	width: 80%;
 	float: left;
 	margin-bottom: 50px;
-	margin-top: 50px;
+	margin-top: 10px;
 }
 
-h2 {
+ section p {
 	text-align: left;
+	font-family: 'insungitCutelivelyjisu';
+	font-size: 40px;
+	margin-bottom: 20px;
 }
 
 section div {
-	width: 650px;
-	height: 500px;
+	width: 700px;
+	height: 550px;
+}
+
+section div img {
+	border: 20px solid #F5FAFD;
 }
 
 aside {
 	width: 20%;
 	float: right;
-	margin-top: 50px;
+	margin-top: 70px;
 	margin-bottom: 50px;
 }
 
@@ -106,8 +143,9 @@ nav.aside ul li {
 	display: block;
 }
 
-aside h3 {
+aside h1 {
 	text-align: center;
+	font-family: 'Humanbumsuk';
 }
 
 footer {
@@ -126,7 +164,7 @@ footer ul li {
 	margin: 20px;
 }
 
-footer ul li a:link {
-	color: black;
-	text-decoration-line: none;
+footer ul li a {
+	text-decoration:none; 
+	color:black; 
 }

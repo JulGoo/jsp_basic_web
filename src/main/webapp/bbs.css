@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 table {
 	text-align: center;
 	border: 1px solid #dddddd;
@@ -12,4 +19,15 @@ table thead tr th {
 	float: right;
 }
 
-h3 {text-align: left;}
+p {
+	text-align: left;
+	font-family: 'insungitCutelivelyjisu';
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+.pagenum { 
+	text-decoration:none; 
+	color:black; 
+	font-size:30px;
+	}
