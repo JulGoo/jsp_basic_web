@@ -68,6 +68,9 @@
 			<%
 			}
 			%>
+			<div class="banner">
+			<img alt="사진에러" src="media/logo.png" height="110px" onclick="javascript:location.href='home.jsp'" style="cursor: pointer;">
+			</div>
 			<nav class="home">
 				<ul>
 					<li><a href="home.jsp">Home</a></li>
